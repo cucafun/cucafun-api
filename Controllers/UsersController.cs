@@ -33,10 +33,10 @@ namespace CucaFunApi.Controllers
         }
 
         //POST create (/users/)
-        [HttpPost(Name="NewUser")]
-        public void UserUpdate([FromBody] string value)
+        [HttpPost]
+        public User New([FromBody]User user)
         {
-
+            return user;
         }
 
         //GET new (/users/new)

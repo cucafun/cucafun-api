@@ -28,6 +28,7 @@ namespace CucaFunApi
       services.AddDbContext<CucafunContext>(options =>
       options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+      services.AddCors();
     }
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -40,8 +41,14 @@ namespace CucaFunApi
       {
         app.UseHsts();
       }
+      app.UseCors(builder =>
+       builder.WithOrigins("http://localhost:4200")
+       .AllowAnyHeader());
       app.UseHttpsRedirection();
-      app.UseMvc();
+      app.UseMvc(routes => 
+      {
+          routes.MapRoute("apiUsers", "{controller=Users}/{action=New}");
+      });
     }
   }
 }
