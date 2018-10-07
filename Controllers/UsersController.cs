@@ -23,5 +23,17 @@ namespace CucaFunApi.Controllers
                 _context.SaveChanges();
             }
         }
+
+        [HttpGet]
+        public ActionResult<List<User>> GetAll()
+        {
+            return _context.Users.ToList();
+        }
+
+        [HttpPost(Name="NewUser")]
+        public void UserUpdate([FromBody] string value)
+        {
+
+        }
     }
 }
