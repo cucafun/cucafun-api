@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using CucaFunApi.Models;
+using System.Threading.Tasks;
 
 namespace CucaFunApi.Controllers
 {
@@ -34,9 +35,9 @@ namespace CucaFunApi.Controllers
 
         //POST create (/users/)
         [HttpPost]
-        public User New([FromBody]User user)
+        public async Task<ActionResult> New([FromBody]User user)
         {
-            return user;
+            return CreatedAtAction(nameof(New), new {id = 1}, new User());
         }
 
         //GET new (/users/new)
